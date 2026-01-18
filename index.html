@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hallucinations of Reality</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle, #111 0%, #000 70%);
+      color: white;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #game {
+      text-align: center;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 64px;
+      letter-spacing: 4px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      display: block;
+      width: 280px;
+      margin: 20px auto;
+      padding: 20px;
+      font-size: 22px;
+      background: #111;
+      color: white;
+      border: 2px solid #555;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="game">
+  <h1>Hallucinations<br>of Reality</h1>
+  <button onclick="startGame()">PLAY</button>
+  <button onclick="showTutorial()">TUTORIAL</button>
+</div>
+
+<audio id="menuMusic" src="menu.mp3" autoplay loop></audio>
+
+<script src="game.js"></script>
+</body>
+</html>
