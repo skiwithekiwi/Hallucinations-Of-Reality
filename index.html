@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hallucinations Of Reality</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+    }
+    button {
+      background: #111;
+      color: white;
+      border: 1px solid red;
+      padding: 15px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: red;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Hallucinations Of Reality</h1>
+<p>You are trapped in a room.<br>Go to sleep.</p>
+
+<button onclick="startGame()">Start</button>
+
+<script>
+function startGame() {
+  document.body.innerHTML = `
+    <h2>Night 1</h2>
+    <p>You lie on the bed...</p>
+  `;
+}
+</script>
+
+</body>
+</html>
