@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hallucinations of Reality</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #room {
+    width: 80%;
+    max-width: 800px;
+    padding: 30px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  #night {
+    opacity: 0.6;
+    margin-bottom: 20px;
+  }
+
+  #text {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #111;
+    color: white;
+    border: 1px solid #444;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    border-color: red;
+  }
+
+  .hallucinating {
+    color: #ff4d4d;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="room">
+  <div id="night"></div>
+  <div id="text"></div>
+  <div id="actions"></div>
+</div>
+
+<script>
+let night = 1;
+const MAX_NIGHTS = 10;
+
+let state = "awake"; 
+// awake → sleeping → hallucinating → sleeping2 → awakeAgain
+
+const nightDiv = document.getElementById("night");
+const textDiv = document.getElementById("text");
+const actionsDiv = document.getElementById("actions");
+
+render();
+
+function render() {
+  nightDiv.textContent = `Night ${night}`;
+  textDiv.className = "";
+  actionsDiv.innerHTML = "";
+
+  if (state === "awake") {
+    textDiv.innerHTML = `
+      You are sitting at your desk.<br>
+      The computer screen is dark.<br>
+      The room is quiet.<br>
+      Too quiet.
+    `;
+    actionsDiv.innerHTML = `<button onclick="sleep()">Go to sleep</button>`;
+  }
+
+  if (state === "sleeping") {
+    textDiv.innerHTML = `
+      You lie down.<br>
+      Your eyes close.<br>
+      The darkness feels heavy.
+    `;
+  }
+
+  if (state === "hallucinating") {
+    textDiv.className = "hallucinating";
+    textDiv.innerHTML = `
+      You wake up.<br>
+      The room looks wrong.<br>
+      Shadows feel closer.<br>
+      You cannot move.
+    `;
+    actionsDiv.innerHTML = `<button onclick="sleepAgain()">Go to sleep</button>`;
+  }
+
+  if (state === "sleeping2") {
+    textDiv.innerHTML = `
+      You force your eyes shut again.<br>
+      Something whispers your name.
+    `;
+  }
+
+  if (state === "awakeAgain") {
+    textDiv.innerHTML = `
+      You wake up suddenly.<br>
+      Everything looks normal.<br>
+      But it isn’t.
+    `;
+    setTimeout(endNight, 3000);
+  }
+}
+
+function sleep() {
+  state = "sleeping";
+  render();
+
+  setTimeout(() => {
+    state = "hallucinating";
+    render();
+  }, 2000);
+}
+
+function sleepAgain() {
+  state = "sleeping2";
+  render();
+
+  setTimeout(() => {
+    state = "awakeAgain";
+    render();
+  }, 2000);
+}
+
+function endNight() {
+  if (night >= MAX_NIGHTS) {
+    nightDiv.textContent = "";
+    textDiv.innerHTML = `
+      You survived all 10 nights.<br>
+      Reality no longer feels real.
+    `;
+    actionsDiv.innerHTML = "";
+    return;
+  }
+
+  night++;
+  state = "awake";
+  render();
+}
+</script>
+
+</body>
+</html>
