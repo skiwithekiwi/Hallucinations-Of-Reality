@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hallucinations of Reality</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      color: #ccc;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #room {
+      width: 80%;
+      max-width: 800px;
+      text-align: left;
+    }
+
+    #status {
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #111;
+      color: white;
+      border: 1px solid #444;
+      padding: 12px 20px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      border-color: red;
+    }
+
+    .hallucinating {
+      color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+
+<div id="room">
+  <div id="status"></div>
+  <div id="view"></div>
+  <div id="actions"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
